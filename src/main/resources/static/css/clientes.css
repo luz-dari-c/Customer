@@ -1,0 +1,19 @@
+body{
+    background:#f5f5f5;
+}
+
+.navbar{
+    background:#0F172A !important;
+}
+
+.table{
+    background:white;
+}
+
+.btn-dark{
+    background:#0F172A;
+    border:none;
+}
+.btn-dark:hover{
+    background:#1E293B;
+}

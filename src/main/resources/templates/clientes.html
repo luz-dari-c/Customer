@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clientes</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/clientes.css}">
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+
+        <a href="/dashboard" class="navbar-brand">
+            Sysnet - Prueba Técnica
+        </a>
+
+        <form th:action="@{/logout}" method="post">
+            <button class="btn btn-outline-light">
+                Cerrar sesión
+            </button>
+        </form>
+
+    </div>
+</nav>
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>Gestión de Clientes</h2>
+
+        <div>
+
+            <button class="btn btn-success me-2" onclick="exportarExcel()">
+                Exportar Excel
+            </button>
+
+            <button class="btn btn-dark"
+                    data-bs-toggle="modal"
+                    data-bs-target="#clienteModal">
+                Añadir Cliente
+            </button>
+
+        </div>
+
+    </div>
+
+    <table class="table table-bordered table-hover align-middle">
+
+        <thead class="table-dark">
+        <tr>
+            <th>Identificación</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td colspan="5" class="text-center">
+                Por favor añada un cliente.
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
+<div class="modal fade" id="clienteModal" tabindex="-1">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    Registrar Cliente
+                </h5>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <form id="clienteForm">
+
+                    <input type="hidden" id="id">
+
+                    <div class="row">
+
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Tipo</label>
+                            <select id="tipoIdentificacion" class="form-select">
+                                <option value="CC">CC</option>
+                                <option value="TI">TI</option>
+                                <option value="RC">RC</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-8 mb-3">
+                            <label class="form-label">Identificación</label>
+                            <input id="identificacion" class="form-control">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Primer Nombre</label>
+                            <input id="primerNombre" class="form-control">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Segundo Nombre</label>
+                            <input id="segundoNombre" class="form-control">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Primer Apellido</label>
+                            <input id="primerApellido" class="form-control">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Segundo Apellido</label>
+                            <input id="segundoApellido" class="form-control">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Correo</label>
+                            <input id="email" type="email" class="form-control">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Teléfono</label>
+                            <input id="telefono" class="form-control">
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label">Dirección</label>
+                            <input id="direccion" class="form-control">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Ocupación</label>
+                            <input id="ocupacion" class="form-control">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Fecha de Nacimiento</label>
+                            <input id="fechaNacimiento" type="date" class="form-control">
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+
+                            <label class="form-label">Foto</label>
+
+                            <input type="file"
+                                   id="foto"
+                                   class="form-control"
+                                   accept="image/*">
+
+                            <img id="preview"
+                                 class="img-thumbnail mt-3"
+                                 style="display:none;width:150px;height:150px;object-fit:cover;">
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+
+                <button class="btn btn-dark" id="btnGuardar">
+                    Guardar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script th:src="@{/js/clientes.js}"></script>
+
+</body>
+</html>
